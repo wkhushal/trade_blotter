@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace trade_blotter.Models
 {
-    public enum TradeStatus {
-        Pending,
-        Booked,
-        Cancelled
-    }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    public class TradeBooking
+    [Table("TradeBooking")]
+    public partial class TradeBooking
     {
-        public int TradeBookingID { get; set; }
-        public int UserId { get; set; }
-        public int TradeId { get; set; }
-        public TradeStatus? TradeStatus { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int TradeBookingId { get; set; }
 
-        public User User { get; set; }
-        public Trade Trade { get; set; }
+        public int UserId { get; set; }
+
+        public int TradeId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string TradeStatus { get; set; }
+
+        public virtual Trade Trade { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

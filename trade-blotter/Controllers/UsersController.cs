@@ -12,107 +12,105 @@ using trade_blotter.Models;
 
 namespace trade_blotter.Controllers
 {
-    public class TradesController : Controller
+    public class UsersController : Controller
     {
         private TradeBookingContext db = new TradeBookingContext();
 
-        // GET: Trades
+        // GET: Users
         public async Task<ActionResult> Index()
         {
-            return View(await db.Trades.ToListAsync());
+            return View(await db.Users.ToListAsync());
         }
 
-        // GET: Trades/Details/5
+        // GET: Users/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trade trade = await db.Trades.FindAsync(id);
-            if (trade == null)
+            User user = await db.Users.FindAsync(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(trade);
+            return View(user);
         }
 
-        // GET: Trades/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Trades/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TradeId,BuySell,Reference,Contract,Lots,Price,TradeTime")] Trade trade)
+        public async Task<ActionResult> Create([Bind(Include = "ID,FirstName,LastName,LUDateTime,UserRole")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Trades.Add(trade);
+                db.Users.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(trade);
+            return View(user);
         }
 
-        // GET: Trades/Edit/5
+        // GET: Users/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trade trade = await db.Trades.FindAsync(id);
-            if (trade == null)
+            User user = await db.Users.FindAsync(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(trade);
+            return View(user);
         }
 
-        // POST: Trades/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TradeId,BuySell,Reference,Contract,Lots,Price,TradeTime")] Trade trade)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,FirstName,LastName,LUDateTime,UserRole")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trade).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(trade);
+            return View(user);
         }
 
-        // GET: Trades/Delete/5
+        // GET: Users/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trade trade = await db.Trades.FindAsync(id);
-            if (trade == null)
+            User user = await db.Users.FindAsync(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(trade);
+            return View(user);
         }
 
-        // POST: Trades/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Trade trade = await db.Trades.FindAsync(id);
-            db.Trades.Remove(trade);
+            User user = await db.Users.FindAsync(id);
+            db.Users.Remove(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

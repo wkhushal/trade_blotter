@@ -1,0 +1,45 @@
+﻿@model IEnumerable<trade_blotter.Models.TradeBooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trade.Reference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TradeStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trade.Reference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TradeStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TradeBookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TradeBookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TradeBookingId })
+        </td>
+    </tr>
+}
+
+</table>

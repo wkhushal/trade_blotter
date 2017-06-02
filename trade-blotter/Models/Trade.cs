@@ -1,24 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace trade_blotter.Models
 {
-    public enum BuySell {
-        Buy,
-        Sell
-    }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    public class Trade
+    [Table("Trade")]
+    public partial class Trade
     {
-        public int TradeID { get; set; }
-        public string Reference { get; set; }
-        public BuySell BuySell { get; set; } 
-        public decimal Lots { get; set; }
-        public string Contract { get; set; }
-        public DateTime TradeTime { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Trade()
+        {
+            TradeBookings = new HashSet<TradeBooking>();
+        }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int TradeId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string BuySell { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Reference { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Contract { get; set; }
+
+        public int Lots { get; set; }
+
+        public decimal Price { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? TradeTime { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TradeBooking> TradeBookings { get; set; }
     }
 }

@@ -60,6 +60,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -160,7 +162,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TradeBookingsController.cs" />
+    <Compile Include="Controllers\ApiTradesController.cs" />
     <Compile Include="Controllers\TradesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DataAccess\TradeBookingContext.cs" />
     <Compile Include="DataAccess\TradeBookingInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,6 +177,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TradeBooking.mdf" />
+    <Content Include="App_Data\TradeBooking_log.ldf">
+      <DependentUpon>TradeBooking.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\styles.css" />
@@ -179,7 +188,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="gulpfile.js" />
+    <Content Include="sgulpfile.js" />
     <Content Include="Scripts\App\app.component.js" />
     <Content Include="Scripts\App\app.module.js" />
     <Content Include="Scripts\App\main.js" />
@@ -206,7 +215,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Trades\TradesIndex.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,10 +232,23 @@
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="Scripts\systemjs.config.js" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\TradeBookings\Create.cshtml" />
+    <Content Include="Views\TradeBookings\Delete.cshtml" />
+    <Content Include="Views\TradeBookings\Details.cshtml" />
+    <Content Include="Views\TradeBookings\Edit.cshtml" />
+    <Content Include="Views\TradeBookings\Index.cshtml" />
+    <Content Include="Views\Trades\Create.cshtml" />
+    <Content Include="Views\Trades\Delete.cshtml" />
+    <Content Include="Views\Trades\Details.cshtml" />
+    <Content Include="Views\Trades\Edit.cshtml" />
+    <Content Include="Views\Trades\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

@@ -1,26 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace trade_blotter.Models
 {
-    public enum Role
-    {
-        Admin,
-        MiddleOffice,
-        Clearing,
-        Trader
-    }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    public class User
+    [Table("User")]
+    public partial class User
     {
-        public int ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            TradeBookings = new HashSet<TradeBooking>();
+        }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(100)]
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime LUDateTime { get; set; }
-        public Role? UserRole { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string UserRole { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime LUDateTime { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TradeBooking> TradeBookings { get; set; }
     }
 }

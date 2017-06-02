@@ -7,7 +7,7 @@ namespace trade_blotter.DataAccess
     public class TradeBookingContext : DbContext
     {
         public TradeBookingContext()
-            : base("TradeBookingContext")
+            : base("TradeBooking")
         {
 
         }
